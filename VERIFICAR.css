@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(img-crear-regi/Fond-7.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper {
+    width: 420px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #FFF;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.row2 h3{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .button {
+  background-color: transparent;
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid rgba(255, 255, 255, .2);
+  border-radius: 22.5px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #FFF;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+  width: 100%;
+  cursor: pointer; 
+}
+
+.wrapper .button:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: rgba(255, 255, 255, .2);
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.wrapper .button:hover, button:focus {
+  color: white;
+}
+
+.wrapper .button:hover:before, button:focus:before {
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.wrapper .button:active {
+  transform: scale(0.9);
+}

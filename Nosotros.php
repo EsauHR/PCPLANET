@@ -1,0 +1,233 @@
+<?php
+
+/* 
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
+ */
+session_start();
+    
+    require 'Conexion3.php';
+    
+    if(isset($_SESSION['user_id']))
+    {
+    $records = $conn->prepare('SELECT id, Email, Contrasena FROM cuenta WHERE id = :id');
+    $records->bindParam(':id', $_SESSION['user_id']);
+    $records->execute();
+        $results = $records->fetch(PDO::FETCH_ASSOC);
+    
+    $user = null;
+
+    if(count($results) > 0){
+        $user = $results;
+      }
+    }
+?>
+<html>
+    <head>
+        <link rel="stylesheet" href="NOSOTROS.css" type="text/css"/>
+        <title>NOSOTROS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ICONOS -->
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <body>
+
+        <!-- HEADER -->
+        <header class="header">
+            <div class="menu container">
+                <a class="logo">PCPLANET</a>
+                <input type="checkbox" id="menu"/>
+                <label for="menu">
+                    <img src="img-inicio/menu.png" class="menu-icono" alt="">
+                </label>
+                <nav class="navbar">
+                    <ul class="men">
+                        <li><a href="Principal.php">INICIO</a></li>
+                        <li><a href="Computadoras.php">COMPUTADORAS</a></li>
+                        <li><a href="Componentes.php">COMPONENTES</a></li>
+                        <li><a class="active">NOSOTROS</a></li>
+                    </ul>
+                </nav> 
+                <div>
+                    <ul>
+                        <li class="submenu">
+                            <<?= $user['Email']; ?>
+                            <a href="logout.php"><i class='bx bx-log-out'></i></a>
+                            <a href="Carrito.php"><i class='bx bx-cart'></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- BANNER -->
+        <section class="home">
+            <div class="de-gradient-edge-bottom"></div>
+            <img class="img-slide active" src="img-noso/fondo2.jpg"></img>
+
+            <div class="content active">
+                <h1>Conoce<br><span>Nuestra equipo</span></h1>
+                <a class="button-1" href="#equipo">EQUIPO</a>
+            </div>
+        </section>        
+
+        <!-- ======NUESTRO PROYECTO==== -->
+        <section class="about">
+            <div class="about-main">
+                <div class="about-text">
+                    <h2>Conoce</h2>
+                    <h5>Nuestro <span>Proyecto</span></h5>
+                    <p> ¡Hola a todos! Somos Joksan y Sebastián, dos apasionados de la tecnología. 
+                        ¿Cómo surgió nuestro proyecto? En nuestras búsquedas por componentes de PC,
+                        nos dimos cuenta de la falta de un lugar que ofreciera variedad, calidad y atención 
+                        al cliente. Así nació [Nombre de tu Empresa]. En nuestra plataforma, encontrarás todo 
+                        lo necesario para tu PC, seleccionado con cuidado y dedicación. ¡Únete a nosotros y 
+                        descubre una nueva forma de experimentar la tecnología!
+                    </p>
+                    <button class="button1">Conoce nuestros productos</button>
+                </div>
+                <img src="img-noso/4.webp" alt="alt"/>
+            </div>
+        </section>
+
+        <!-- ======NUSTRO EQUIPO==== -->
+        <section class="team" id="equipo">
+            <div class="container">
+                <div class="flex team-center" data-aos="fade-up">
+                    <div class="w-66">
+                        <div class="flex gap-1">
+                            <h5>Conoce</h5>
+                        </div>
+                        <h2 class="mt-1">Nuestro <span>Equipo</span></h2>
+                        <p class="mt-1">
+                        </p>
+                    </div>
+
+                </div>
+                <div class="team-slider flex mt-15">
+                    <div class="team-img">
+                        <img src="img-noso/slider/team-slider3.png" alt="Avatar">
+                        <div class="overlay">
+                            <div class="overlay_text">
+                                <h3>SEBASTIAN</h3>
+                                <h4>DISEÑADOR</h4>
+                                <div class="flex flex-center gap-1">
+                                    <!--<a href="#"><i class='bx bxl-facebook'></i></a>
+                                    <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                                    <a href="#"><i class='bx bxl-instagram'></i></a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-img">
+                        <img src="img-noso/slider/team-slider1.png" alt="Avatar">
+                        <div class="overlay">
+                            <div class="overlay_text">
+                                <h3>JOKSAN</h3>
+                                <h4>PROGRAMADOR</h4>
+                                <div class="flex flex-center gap-1">
+                                    <!--<a href="#"><i class='bx bxl-facebook'></i></a>
+                                     <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                                     <a href="#"><i class='bx bxl-instagram'></i></a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+            <div class="team-btn">
+                <div class="container flex1 flex-sb gap-2 flex-wrap">
+                    <h4>HAGA UNA PREGUNTA A NUESTRO INCREÍBLE EQUIPO Y OBTENGA UNA RESPUESTA RÁPIDAMENTE</h4>
+                    <a href="#" class="button2">Contactar</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======ICONOS==== -->
+        <section class="redes-sociales">
+            <h2>SUMATE A LA MEJOR COMUNIDAD :D</h2>
+            <div class="redes-container">
+                <ul>
+                    <li><a href="#" class="facebook"><i class='bx bxl-facebook'></i></a></li>
+                    <li><a href="#" class="instagram"><i class='bx bxl-instagram'></i></a></li>
+                    <li><a href="#" class="twitter"><i class='bx bxl-twitter' ></i></a></li>
+                    <li><a href="#" class="pinterest"><i class='bx bxl-pinterest-alt' ></i></a></li>
+                    <li><a href="#" class="whatsapp"><i class='bx bxl-whatsapp' ></i></a></li>               
+                </ul>
+            </div>
+        </section>
+
+        <!-- ======FOOTER==== -->
+        <footer class="footer">
+            <div class="container container-footer">
+                <div class="menu-footer">
+                    <div class="contact-info">
+                        <p class="title-footer">Información de Contacto</p>
+                        <ul>
+                            <li>Dirección: 71 Pennington Lane Vernon Rockville, CT 06066</li>
+                            <li>Teléfono: 123-456-7890</li>
+                            <li>Fax: 55555300</li>
+                            <li>EmaiL: sebasgay.com</li>
+                        </ul>
+                        <div class="social-icons">
+                            <span class="facebook">
+                                <i class='bx bxl-facebook'></i>
+                            </span>
+                            <span class="twitter">
+                                <i class='bx bxl-twitter' ></i>
+                            </span>
+                            <span class="youtube">
+                                <i class='bx bxl-youtube' ></i>
+                            </span>
+                            <span class="pinterest">
+                                <i class='bx bxl-pinterest-alt' ></i>
+                            </span>
+                            <span class="instagram">
+                                <i class='bx bxl-instagram' ></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="information">
+                        <p class="title-footer">Información</p>
+                        <ul>
+                            <li><a href="#">Acerca de Nosotros</a></li>
+                            <li><a href="#">Información Delivery</a></li>
+                            <li><a href="#">Politicas de Privacidad</a></li>
+                            <li><a href="#">Términos y condiciones</a></li>
+                            <li><a href="#">Contactános</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="my-account">
+                        <p class="title-footer">Mi cuenta</p>
+                        <ul>
+                            <li><a href="#">Mi cuenta</a></li>
+                            <li><a href="#">Historial de ordenes</a></li>
+                            <li><a href="#">Lista de deseos</a></li>
+                            <li><a href="#">Boletín</a></li>
+                            <li><a href="#">Reembolsos</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="newsletter">
+                        <p class="title-footer">Boletín informativo</p>
+                        <div class="content">
+                            <p>
+                                Suscríbete a nuestros boletines ahora y mantente al
+                                día con nuevas colecciones y ofertas exclusivas.
+                            </p>
+                            <input type="email" placeholder="Ingresa el correo aquí...">
+                            <button class="button-2">SUSCRIBIRSE</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p> Desarrollado por Sebastian y Joksan &copy; 2024 </p>
+                    <img src="img-noso/payment.png" alt="Pagos">
+                </div>
+            </div>
+        </footer>	
+    </body>
+</html>
